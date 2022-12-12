@@ -1,18 +1,17 @@
 
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const port = process.env.PORT || 3001;
-
+const cookieParser = require('cookie-parser');
+var path  = require('path');
 
 require('dotenv').config()
-require('./DB/conn');
 
 const app = express();
 app.use(cors({ origin:true, credentials:true }));
 app.use(express.json());
+app.use(require('./router/auth'));
 
-// console.log(process.env.DATABASE);
 
 app.get('/',(req,res) => {
     res.send(`Hello world from home`);
